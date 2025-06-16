@@ -90,11 +90,12 @@ return (
             <div>✉️ olusholaolatejuuu@gmail.com</div>
           </div>
           <button style={{ marginTop: 32 }} onClick={() => setShowHero(false)}>
-            Enter Site
+            Find out more
           </button>
         </section>
       </div>
     )}
+    {!showHero && (
     <header>
       <nav>
         <button onClick={() => scrollToSection('About Me')}>info</button>
@@ -102,13 +103,13 @@ return (
         <button onClick={() => scrollToSection('experience')}>Experience</button>
         <button onClick={() => scrollToSection('projects')}>Projects</button>
         <button onClick={() => scrollToSection('skills')}>Skills</button>
-        <button onClick={() => scrollToSection('contact')}>Contact</button>
-        
-        
+        <button onClick={() => scrollToSection('contact')}>Contact</button>  
       </nav>
     </header>
+    )}
     <section id="About Me">
-      <h1>About me</h1>
+      <h1>Olushola Olateju</h1>
+      <h2>About me</h2>
       <p>
         I am a Computer Science student at the University of West London, currently on track to graduate with First Class Honours.<br /> I’m entering my second year and actively seeking internship or placement year opportunities where I can apply my technical skills, learn from experienced teams, and contribute to real-world projects.<br />
 I’ve built a range of personal and academic projects, including This self-updating portfolio site using Next.js, GitHub API, and Notion API. I enjoy working across both frontend and backend systems, and beyond coding, I’m passionate about continuous learning and exploring new technologies, from building tools that solve everyday problems to understanding how low-level systems work. I thrive in collaborative environments and bring strong communication skills from past experience in customer-facing roles.

@@ -1,0 +1,302 @@
+body, html {
+  background: transparent !important;
+}
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+.video-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
+  object-fit: cover;
+  z-index: -100;
+  pointer-events: none;
+  opacity: 0.35; /* Adjust as needed */
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: transparent !important;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2 {
+  color: #2c3e50;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+section {
+  padding: 20px;
+  margin: 20px 0;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Basic animation for sections */
+section {
+  transition: transform 0.3s ease-in-out;
+}
+
+section:hover {
+  transform: scale(1.02);
+}
+
+
+/* Overlay covers the whole viewport and centers content */
+.hero-overlay {
+  position: fixed;
+  inset: 0;
+  background:  rgb(62, 62, 62); /* solid black, no transparency */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+/* Hero box is centered, with padding and rounded corners */
+.hero-box {
+  background: rgba(24, 24, 36, 0.85); /* add alpha for transparency */
+  color: #fff;
+  padding: 2rem 1.5rem;
+  border-radius: 1.2rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 280px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Make icons row centered and spaced */
+.hero-icons {
+  display: flex;
+  gap: 1.5rem;
+  margin: 1rem 0;
+  justify-content: center;
+}
+
+.hero-icons a svg {
+  color: #fff;
+  transition: color 0.2s;
+}
+.hero-icons a:hover svg {
+  color: #0072b1; /* LinkedIn blue on hover */
+}
+
+/* Contact info centered and spaced */
+.hero-contact {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  color: #fff;
+  font-size: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+/* Button styling */
+.hero-box button {
+  background: #0072b1;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.75rem 2rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: background 0.2s;
+}
+.hero-box button:hover {
+  background: #005580;
+}
+/* .hero-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(20, 20, 20, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+} */
+
+/* .hero-box {
+  background: #fff;
+  color: #222;
+  padding: 2rem 1.5rem;
+  border-radius: 1.2rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 450px;
+  max-height: 200px;
+  width: 90vw;
+  min-width: 220px;
+  text-align: center;
+} */
+ /* .hero-box {
+  /* ...existing code... 
+  max-width: 350px;
+  width: 90vw;
+  min-width: 220px;
+  padding: 2rem 1.5rem;
+  /* Remove any height: 100vh or similar */
+  /* max-height: 80vh;      /* Prevents it from ever being too tall */
+  /* overflow: auto;        Adds scroll if content overflows */
+  /* box-sizing: border-box; */
+/* }  */
+ 
+
+/* .hero-icons {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero-contact {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+} */
+
+/* Black & Red Theme Variables */
+:root {
+  --primary-bg: #111;
+  --primary-red: #e53935;
+  --primary-white: #fff;
+  --primary-grey: #222;
+  --primary-cream: #fffbe6;
+}
+
+
+/* Navbar Styles */
+nav {
+  background: var(--primary-bg);
+  border-radius: 16px;
+  max-width: 1100px;
+  padding: 16px 32px;
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 48px);
+  z-index: 1000;
+}
+
+/* Ensure space for fixed navbar */
+body {
+  padding-top: 0px; /* Adjust this value to match your navbar's height + top offset */
+  font-family: 'Montserrat', sans-serif;
+  background: transparent !important;
+  color: #333;
+  margin: 0;
+}
+
+nav a {
+  color: var(--primary-cream);
+  font-weight: 700;
+  font-size: 1.1rem;
+  position: relative;
+  padding: 8px 12px;
+  transition: color 0.2s;
+}
+
+nav a:hover {
+  color: var(--primary-red);
+}
+
+nav a::after {
+  content: '';
+  display: block;
+  height: 2px;
+  width: 0;
+  background: var(--primary-red);
+  transition: width 0.2s;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+
+/* Full-screen Section Layout */
+section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-grey);
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+  border-radius: 0;
+  transition: none;
+}
+
+/* Section Box */
+.section-box {
+  background: var(--primary-bg);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  padding: 48px 32px;
+  max-width: 900px;
+  width: 90%;
+  margin: 32px;
+  color: var(--primary-white);
+  text-align: left;
+}
+
+/* Headings and Links */
+h1, h2 {
+  color: var(--primary-red);
+}
+
+a {
+  color: var(--primary-red);
+}
+
+a:hover {
+  color: var(--primary-white);
+  text-decoration: none;
+}
+
+/* ...keep your hero-overlay and hero-box as needed, update colors if desired... */
