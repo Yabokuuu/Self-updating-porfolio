@@ -1,103 +1,116 @@
-import Image from "next/image";
+"use client";
+// This is a client-side component in Next.js
+import { useState, useEffect } from 'react';
+import './style.css';
+// Importing React hooks for state management and side effects
+// Importing styles for the component
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  // State variables to hold projects, loading state, and error state
+  // useState is used to manage state in functional components
+  // useEffect is used to perform side effects in functional components
+  // useEffect is used to fetch data when the component mounts
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+useEffect(() => {
+  Promise.all([
+    fetch('/api/github-projects')
+      .then(res => {
+        if (!res.ok) {
+          throw new Error('Network response was not ok for GitHub projects');
+        }
+        return res.json();
+      }),
+      // Fetching GitHub projects from the API
+    // If the response is not OK, throw an error
+    // If the response is OK, parse the JSON data 
+    fetch('/api/notion-experience')
+      .then(res => {
+        if (!res.ok) {
+          throw new Error('Network response was not ok for Notion experience');
+        }
+        return res.json();
+      })
+      // Fetching Notion experience from the API
+  ])
+  .then(([projectsData, experienceData]) => {
+    setProjects(projectsData);
+    setExperience(experienceData);
+    setLoading(false);
+    // Setting the projects and experience data to state
+    // Setting loading to false to indicate data has been fetched
+  })
+  .catch(err => {
+    setError(err.message);
+    setLoading(false);
+    // If there's an error, set the error message and loading to false
+  });
+}, []);
+
+const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    // Function to scroll to a specific section by ID
+    // Uses smooth scrolling for a better user experience
+  };
+const [experience, setExperience] = useState([]);
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+  // If loading, display a loading message
+  // If there's an error, display the error message
+
+  console.log('Experience data:', experience);
+  return (
+  <div>
+      <header>
+        <nav>
+          <button onClick={() => scrollToSection('projects')}>Projects</button>
+          <button onClick={() => scrollToSection('experience')}>Experience</button>
+        </nav>
+      </header>
+      <section id="projects">
+        <h2>Projects</h2>
+        <ul>
+          {projects.map(project => (
+            <li key={project.id}>
+              <a href={project.html_url} target="_blank" rel="noopener noreferrer">
+                {project.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+      <section id="experience">
+        <h2>Work Experience</h2>
+      <ul>
+  {experience.map(exp => {
+    const props = exp.properties || {};
+    const title = props.Project?.title?.[0]?.plain_text || 'No Title';
+    const description = props.description?.rich_text?.[0]?.plain_text || 'No Description';
+    const companyLink = props.link?.rich_text?.find(rt => rt.href)?.href;
+
+    return (
+      <li key={exp.id}>
+        <strong>{title}</strong>
+        {companyLink && (
+          <div>
+            <a href={companyLink} target="_blank" rel="noopener noreferrer">{companyLink}</a>
+          </div>
+        )}
+        <p>{description}</p>
+      </li>
+    );
+  })}
+</ul>
+      </section>
     </div>
   );
+  
+
 }
+// This code fetches GitHub projects and Notion experience data, displays them in sections, and includes navigation buttons to scroll to each section.
+// It handles loading and error states, ensuring a smooth user experience.
