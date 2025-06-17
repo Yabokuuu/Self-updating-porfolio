@@ -1,21 +1,35 @@
 export async function GET(request) {
-  const response = await fetch(
-    `https://api.github.com/users/${process.env.GITHUB_USERNAME}/repos`,
-    {
-      // Fetching repositories for the user specified in the environment variable
-      headers: {
-        Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-      },
-      // Using the GitHub token for authentication
-    }
-  );
+  const username = process.env.GITHUB_USERNAME;
+  const token = process.env.GITHUB_TOKEN;
 
-  if (!response.ok) {
-    return new Response(JSON.stringify({ error: 'GitHub API error' }), { status: response.status });
+  console.log('Fetching GitHub projects for:', username);
+
+  const res = await fetch(`https://api.github.com/users/${username}/repos`, {
+    headers: {
+      Authorization: `token ${token}`,
+      'User-Agent': 'portfolio-app',
+    },
+  });
+
+  if (!res.ok) {
+    console.error('GitHub API error:', res.status, await res.text());
+    return new Response(JSON.stringify({ error: 'Failed to fetch repos' }), {
+      status: 500,
+      headers: {
+        'Cache-Control': 'no-store',
+        'Content-Type': 'application/json',
+      },
+    });
   }
-// Check if the response is OK, otherwise return an error response
-  // If the response is OK, parse the JSON data
-  const projects = await response.json();
-  return new Response(JSON.stringify(projects), { status: 200 });
+
+  const projects = await res.json();
+  console.log('Fetched projects:', projects.map(p => p.name));
+
+  return new Response(JSON.stringify(projects), {
+    status: 200,
+    headers: {
+      'Cache-Control': 'no-store',
+      'Content-Type': 'application/json',
+    },
+  });
 }
-// Returning the projects as a JSON response with a 200 status code

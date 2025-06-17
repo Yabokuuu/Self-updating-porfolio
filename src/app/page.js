@@ -137,8 +137,8 @@ export default function Home() {
             <div className="hero-emoji">👨🏾‍💻</div>
             <h1 className="hero-title">Olushola Olateju</h1>
             <p className="hero-description">
-              Computer Science student at the University of West London, currently on track to graduate with First Class
-              Honours
+              Computer Science student at the University of West London, aspiring Full Stack Developer with a passion for
+              building elegant digital experiences. Proficient in modern web technologies and always eager to learn more.
             </p>
             <div className="hero-icons">
               <a href="https://github.com/olusholaolateju" target="_blank" rel="noopener noreferrer">
