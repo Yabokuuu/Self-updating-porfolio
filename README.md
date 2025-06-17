@@ -23,8 +23,8 @@ It showcases my projects, experience, and skills as a Computer Science student.
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Notion API](https://developers.notion.com/)
 - [GitHub API](https://docs.github.com/en/rest)
-- [shadcn/ui](https://ui.shadcn.com/) (if used)
-- [TypeScript](https://www.typescriptlang.org/) (optional)
+- [shadcn/ui](https://ui.shadcn.com/)
+- [TypeScript](https://www.typescriptlang.org/)
 
 ## Getting Started
 
